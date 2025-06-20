@@ -195,12 +195,11 @@ jobs:
             -   publish
         permissions:
             packages: write
-        uses: dbt-labs/dbt-release/.github/workflows/release-docker.yml@main
+        uses: ./.github/workflows/_publish-docker.yml@main
         with:
             package: ${{ inputs.package }}
-            version_number: ${{ needs.publish.outputs.version }}
-            dockerfile: ${{ inputs.package }}/docker/Dockerfile
-            test_run: ${{ inputs.deploy-to == 'test' && true || false }}
+            version: ${{ needs.publish.outputs.version }}
+            dry-run: ${{ inputs.deploy-to == 'test' && true || false }}
 
     clean-up:
         if: ${{ !cancelled() }}
