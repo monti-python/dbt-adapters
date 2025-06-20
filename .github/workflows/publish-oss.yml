@@ -195,7 +195,7 @@ jobs:
             -   publish
         permissions:
             packages: write
-        uses: ./.github/workflows/_publish-docker.yml@main
+        uses: ./.github/workflows/_publish-docker.yml
         with:
             package: ${{ inputs.package }}
             version: ${{ needs.publish.outputs.version }}
